@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-tema="escuro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Financeiro — SiteSeller</title>
+  <meta name="description" content="Receitas, despesas e lucro da agência.">
+  <meta name="color-scheme" content="dark light">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <!-- Aplica o tema salvo antes da primeira pintura, evitando piscar. -->
+  <script>
+    try {
+      var c = JSON.parse(localStorage.getItem('siteseller:configuracoes') || 'null');
+      if (c && c.tema === 'claro') document.documentElement.dataset.tema = 'claro';
+    } catch (e) { /* mantém o tema escuro padrão */ }
+  </script>
+</head>
+<body data-pagina="financeiro">
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <div class="app">
+    <aside class="sidebar" id="sidebar" aria-label="Navegação principal"></aside>
+
+    <div class="app__principal">
+      <header class="topbar" id="topbar"></header>
+
+      <main class="conteudo" id="conteudo" tabindex="-1">
+        <header class="pagina__cabecalho">
+          <div>
+            <p class="sobrelinha">Caixa</p>
+            <h2>Financeiro</h2>
+            <p>Venda aprovada não é dinheiro em caixa: o lucro considera apenas o que foi recebido menos as despesas registradas.</p>
+          </div>
+          <div class="pagina__acoes">
+            <button type="button" class="botao botao--primario" data-acao="nova-despesa"><i data-lucide="receipt" class="icone" aria-hidden="true"></i>Registrar despesa</button>
+          </div>
+        </header>
+
+        <div class="periodo">
+          <label class="campo campo--linha"><span class="campo__rotulo">Período</span><select class="entrada entrada--p" id="filtro-periodo"></select></label>
+          <div class="periodo__datas" id="periodo-personalizado" hidden>
+            <label>De <input type="date" class="entrada entrada--p" id="periodo-inicio"></label>
+            <label>até <input type="date" class="entrada entrada--p" id="periodo-fim"></label>
+            <p class="campo__erro" id="erro-periodo" role="alert" hidden>A data inicial deve ser anterior à data final.</p>
+          </div>
+          <p class="texto-suave" id="texto-periodo" aria-live="polite"></p>
+        </div>
+
+        <section class="indicadores" id="indicadores-financeiros" aria-label="Indicadores financeiros"></section>
+
+        <section class="cartao cartao--tabela" aria-label="Lançamentos">
+          <div class="abas" role="tablist" aria-label="Lançamentos financeiros">
+            <button type="button" class="aba" role="tab" data-aba="receitas" aria-controls="painel-receitas">Contas a receber</button>
+            <button type="button" class="aba" role="tab" data-aba="despesas" aria-controls="painel-despesas">Despesas</button>
+            <button type="button" class="aba" role="tab" data-aba="historico" aria-controls="painel-historico">Histórico</button>
+          </div>
+          <div id="painel-receitas" role="tabpanel" data-painel="receitas"></div>
+          <div id="painel-despesas" role="tabpanel" data-painel="despesas" hidden></div>
+          <div id="painel-historico" role="tabpanel" data-painel="historico" hidden></div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <noscript><p style="padding:24px;color:#F5E8E7">O SiteSeller precisa de JavaScript ativado para funcionar.</p></noscript>
+
+  <script src="assets/vendor/lucide.min.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/notificacoes.js"></script>
+  <script src="js/servicos.js"></script>
+  <script src="js/clientes.js"></script>
+  <script src="js/orcamentos.js"></script>
+  <script src="js/negociacoes.js"></script>
+  <script src="js/projetos.js"></script>
+  <script src="js/financeiro.js"></script>
+  <script src="js/dados-demo.js"></script>
+</body>
+</html>

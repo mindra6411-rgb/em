@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-tema="escuro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projetos — SiteSeller</title>
+  <meta name="description" content="Produção e entrega dos projetos contratados.">
+  <meta name="color-scheme" content="dark light">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <!-- Aplica o tema salvo antes da primeira pintura, evitando piscar. -->
+  <script>
+    try {
+      var c = JSON.parse(localStorage.getItem('siteseller:configuracoes') || 'null');
+      if (c && c.tema === 'claro') document.documentElement.dataset.tema = 'claro';
+    } catch (e) { /* mantém o tema escuro padrão */ }
+  </script>
+</head>
+<body data-pagina="projetos">
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <div class="app">
+    <aside class="sidebar" id="sidebar" aria-label="Navegação principal"></aside>
+
+    <div class="app__principal">
+      <header class="topbar" id="topbar"></header>
+
+      <main class="conteudo" id="conteudo" tabindex="-1">
+        <header class="pagina__cabecalho">
+          <div>
+            <p class="sobrelinha">Produção</p>
+            <h2>Projetos contratados</h2>
+            <p>Um projeto nasce quando o cliente aprova a proposta. Avance as etapas na ordem e acompanhe os prazos de entrega.</p>
+          </div>
+        </header>
+
+        <section class="faixa" id="resumo-projetos" aria-label="Resumo dos projetos"></section>
+        <div class="chips" id="filtros-projetos" role="group" aria-label="Filtrar projetos"></div>
+        <section class="projetos" id="lista-projetos" aria-label="Lista de projetos"></section>
+      </main>
+    </div>
+  </div>
+
+  <noscript><p style="padding:24px;color:#F5E8E7">O SiteSeller precisa de JavaScript ativado para funcionar.</p></noscript>
+
+  <script src="assets/vendor/lucide.min.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/notificacoes.js"></script>
+  <script src="js/servicos.js"></script>
+  <script src="js/clientes.js"></script>
+  <script src="js/orcamentos.js"></script>
+  <script src="js/negociacoes.js"></script>
+  <script src="js/projetos.js"></script>
+  <script src="js/financeiro.js"></script>
+  <script src="js/dados-demo.js"></script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-tema="escuro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard — SiteSeller</title>
+  <meta name="description" content="Visão geral da agência: caixa, vendas, projetos e negociações.">
+  <meta name="color-scheme" content="dark light">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <!-- Aplica o tema salvo antes da primeira pintura, evitando piscar. -->
+  <script>
+    try {
+      var c = JSON.parse(localStorage.getItem('siteseller:configuracoes') || 'null');
+      if (c && c.tema === 'claro') document.documentElement.dataset.tema = 'claro';
+    } catch (e) { /* mantém o tema escuro padrão */ }
+  </script>
+</head>
+<body data-pagina="dashboard">
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <div class="app">
+    <aside class="sidebar" id="sidebar" aria-label="Navegação principal"></aside>
+
+    <div class="app__principal">
+      <header class="topbar" id="topbar"></header>
+
+      <main class="conteudo" id="conteudo" tabindex="-1">
+        <header class="pagina__cabecalho">
+          <div>
+            <p class="sobrelinha">Visão geral</p>
+            <h2>Como está a agência hoje</h2>
+            <p>Todos os números abaixo são calculados a partir dos clientes, propostas, projetos e lançamentos salvos neste navegador.</p>
+          </div>
+          <div class="pagina__acoes">
+            <a class="botao botao--secundario" href="clientes.html"><i data-lucide="users" class="icone" aria-hidden="true"></i>Ver clientes</a>
+            <a class="botao botao--primario" href="orcamentos.html?novo=1"><i data-lucide="file-plus-2" class="icone" aria-hidden="true"></i>Novo orçamento</a>
+          </div>
+        </header>
+
+        <section class="painel-topo" aria-label="Indicadores principais">
+          <div class="caixa" id="painel-caixa"></div>
+          <div class="metricas" id="painel-metricas"></div>
+        </section>
+
+        <section class="inicio" id="primeiros-passos" aria-label="Primeiros passos" hidden></section>
+
+        <div id="painel-analitico" hidden>
+          <header class="secao__cabecalho">
+            <div><p class="sobrelinha">Desempenho</p><h2>Faturamento e vendas</h2></div>
+            <div class="chips" id="periodo-graficos" role="group" aria-label="Período dos gráficos">
+              <button type="button" class="chip" data-meses="3" aria-pressed="false">3 meses</button>
+              <button type="button" class="chip chip--ativo" data-meses="6" aria-pressed="true">6 meses</button>
+              <button type="button" class="chip" data-meses="12" aria-pressed="false">12 meses</button>
+            </div>
+          </header>
+
+          <section class="grade-graficos" aria-label="Gráficos">
+            <article class="cartao grafico grafico--largo">
+              <header><h3>Evolução do faturamento</h3><p>Pagamentos efetivamente recebidos em cada mês.</p></header>
+              <div class="grafico__area" id="grafico-faturamento" data-descricao="Gráfico de linha com o faturamento recebido por mês"></div>
+            </article>
+            <article class="cartao grafico">
+              <header><h3>Serviços vendidos</h3><p>Participação de cada tipo de site nas vendas fechadas.</p></header>
+              <div class="grafico__rosca">
+                <div class="grafico__area grafico__area--rosca" id="grafico-servicos" data-descricao="Gráfico de rosca com a distribuição das vendas por tipo de site"></div>
+                <ul class="legenda" id="legenda-servicos"></ul>
+              </div>
+            </article>
+            <article class="cartao grafico">
+              <header><h3>Vendas por período</h3><p>Propostas aprovadas em cada mês.</p></header>
+              <div class="grafico__area" id="grafico-vendas" data-descricao="Gráfico de barras com a quantidade de vendas fechadas por mês"></div>
+            </article>
+            <article class="cartao grafico grafico--largo">
+              <header><h3>Receitas e despesas</h3><p>O que entrou e o que saiu do caixa, mês a mês.</p></header>
+              <div class="grafico__area" id="grafico-comparativo" data-descricao="Gráfico de barras comparando receitas recebidas e despesas por mês"></div>
+            </article>
+          </section>
+
+          <header class="secao__cabecalho">
+            <div><p class="sobrelinha">Operação</p><h2>O que pede atenção</h2></div>
+          </header>
+
+          <section class="grade-operacao" aria-label="Operação">
+            <article class="cartao">
+              <header class="cartao__cabecalho"><h3>Clientes aguardando resposta</h3><a href="negociacoes.html">Negociações</a></header>
+              <div id="lista-aguardando"></div>
+            </article>
+            <article class="cartao">
+              <header class="cartao__cabecalho"><h3>Projetos próximos do prazo</h3><a href="projetos.html">Projetos</a></header>
+              <div id="lista-prazos"></div>
+            </article>
+            <article class="cartao cartao--atividades">
+              <header class="cartao__cabecalho"><h3>Atividades recentes</h3></header>
+              <div id="lista-atividades"></div>
+            </article>
+            <article class="cartao">
+              <header class="cartao__cabecalho"><h3>Últimas propostas</h3><a href="orcamentos.html">Orçamentos</a></header>
+              <div id="lista-propostas"></div>
+            </article>
+            <article class="cartao">
+              <header class="cartao__cabecalho"><h3>Resumo das negociações</h3></header>
+              <div id="resumo-negociacoes"></div>
+            </article>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <noscript><p style="padding:24px;color:#F5E8E7">O SiteSeller precisa de JavaScript ativado para funcionar.</p></noscript>
+
+  <script src="assets/vendor/lucide.min.js"></script>
+  <script src="assets/vendor/chart.umd.min.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/notificacoes.js"></script>
+  <script src="js/servicos.js"></script>
+  <script src="js/clientes.js"></script>
+  <script src="js/orcamentos.js"></script>
+  <script src="js/negociacoes.js"></script>
+  <script src="js/projetos.js"></script>
+  <script src="js/financeiro.js"></script>
+  <script src="js/dados-demo.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

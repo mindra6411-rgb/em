@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-tema="escuro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clientes — SiteSeller</title>
+  <meta name="description" content="Carteira de clientes e contatos interessados.">
+  <meta name="color-scheme" content="dark light">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <!-- Aplica o tema salvo antes da primeira pintura, evitando piscar. -->
+  <script>
+    try {
+      var c = JSON.parse(localStorage.getItem('siteseller:configuracoes') || 'null');
+      if (c && c.tema === 'claro') document.documentElement.dataset.tema = 'claro';
+    } catch (e) { /* mantém o tema escuro padrão */ }
+  </script>
+</head>
+<body data-pagina="clientes">
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <div class="app">
+    <aside class="sidebar" id="sidebar" aria-label="Navegação principal"></aside>
+
+    <div class="app__principal">
+      <header class="topbar" id="topbar"></header>
+
+      <main class="conteudo" id="conteudo" tabindex="-1">
+        <header class="pagina__cabecalho">
+          <div>
+            <p class="sobrelinha">Carteira</p>
+            <h2>Clientes da agência</h2>
+            <p>Cada cliente tem orçamento, prazo e um perfil de comportamento que influencia como ele reage às suas propostas.</p>
+          </div>
+          <div class="pagina__acoes">
+            <button type="button" class="botao botao--secundario" id="simular-contato" data-acao="simular-contato"><i data-lucide="user-plus" class="icone" aria-hidden="true"></i>Simular novo contato</button>
+            <button type="button" class="botao botao--primario" data-acao="novo-cliente"><i data-lucide="plus" class="icone" aria-hidden="true"></i>Cadastrar cliente</button>
+          </div>
+        </header>
+
+        <section class="caixa-contatos" id="caixa-contatos" aria-label="Contatos interessados" hidden></section>
+
+        <section class="cartao cartao--tabela" aria-label="Lista de clientes">
+          <div class="barra-filtros">
+            <div class="barra-filtros__grupo">
+              <label class="busca">
+                <span class="so-leitor">Buscar cliente por nome ou empresa</span>
+                <i data-lucide="search" class="icone" aria-hidden="true"></i>
+                <input type="search" class="entrada" id="busca-clientes" placeholder="Buscar por nome ou empresa" autocomplete="off">
+              </label>
+              <label><span class="so-leitor">Filtrar por segmento</span><select class="entrada entrada--p" id="filtro-segmento"></select></label>
+              <label><span class="so-leitor">Filtrar por perfil</span><select class="entrada entrada--p" id="filtro-perfil"></select></label>
+            </div>
+            <span class="texto-suave" id="contagem-clientes" aria-live="polite"></span>
+          </div>
+          <div id="lista-clientes"></div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <noscript><p style="padding:24px;color:#F5E8E7">O SiteSeller precisa de JavaScript ativado para funcionar.</p></noscript>
+
+  <script src="assets/vendor/lucide.min.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/notificacoes.js"></script>
+  <script src="js/servicos.js"></script>
+  <script src="js/clientes.js"></script>
+  <script src="js/orcamentos.js"></script>
+  <script src="js/negociacoes.js"></script>
+  <script src="js/projetos.js"></script>
+  <script src="js/financeiro.js"></script>
+  <script src="js/dados-demo.js"></script>
+</body>
+</html>

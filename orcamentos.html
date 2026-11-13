@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-tema="escuro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Orçamentos — SiteSeller</title>
+  <meta name="description" content="Propostas comerciais da agência.">
+  <meta name="color-scheme" content="dark light">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <!-- Aplica o tema salvo antes da primeira pintura, evitando piscar. -->
+  <script>
+    try {
+      var c = JSON.parse(localStorage.getItem('siteseller:configuracoes') || 'null');
+      if (c && c.tema === 'claro') document.documentElement.dataset.tema = 'claro';
+    } catch (e) { /* mantém o tema escuro padrão */ }
+  </script>
+</head>
+<body data-pagina="orcamentos">
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <div class="app">
+    <aside class="sidebar" id="sidebar" aria-label="Navegação principal"></aside>
+
+    <div class="app__principal">
+      <header class="topbar" id="topbar"></header>
+
+      <main class="conteudo" id="conteudo" tabindex="-1">
+        <div id="vista-lista" class="pilha">
+          <header class="pagina__cabecalho">
+            <div>
+              <p class="sobrelinha">Propostas comerciais</p>
+              <h2>Orçamentos</h2>
+              <p>Monte a proposta, confira a margem e envie. A resposta do cliente chega em Negociações.</p>
+            </div>
+            <div class="pagina__acoes">
+              <button type="button" class="botao botao--primario" data-acao="novo"><i data-lucide="file-plus-2" class="icone" aria-hidden="true"></i>Novo orçamento</button>
+            </div>
+          </header>
+
+          <section class="cartao cartao--tabela" aria-label="Lista de orçamentos">
+            <div class="barra-filtros">
+              <div class="chips" id="filtros-status" role="group" aria-label="Filtrar por status"></div>
+              <label class="busca">
+                <span class="so-leitor">Buscar por código ou cliente</span>
+                <i data-lucide="search" class="icone" aria-hidden="true"></i>
+                <input type="search" class="entrada" id="busca-orcamentos" placeholder="Buscar por código ou cliente" autocomplete="off">
+              </label>
+            </div>
+            <div id="lista-orcamentos"></div>
+          </section>
+        </div>
+
+        <div id="vista-editor" class="editor" hidden></div>
+      </main>
+    </div>
+  </div>
+
+  <noscript><p style="padding:24px;color:#F5E8E7">O SiteSeller precisa de JavaScript ativado para funcionar.</p></noscript>
+
+  <script src="assets/vendor/lucide.min.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/notificacoes.js"></script>
+  <script src="js/servicos.js"></script>
+  <script src="js/clientes.js"></script>
+  <script src="js/orcamentos.js"></script>
+  <script src="js/negociacoes.js"></script>
+  <script src="js/projetos.js"></script>
+  <script src="js/financeiro.js"></script>
+  <script src="js/dados-demo.js"></script>
+</body>
+</html>

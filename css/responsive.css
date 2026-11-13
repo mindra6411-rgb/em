@@ -1,0 +1,189 @@
+/*
+ * SiteSeller — responsive.css
+ * Adaptações de composição por faixa de largura (não apenas redução de escala).
+ */
+
+/* ---------- Notebooks ---------- */
+@media (max-width: 1240px) {
+  .conteudo { padding-inline: 24px; }
+  .topbar { padding-inline: 24px; }
+  .topbar__data span { display: none; }
+  .topbar__data { padding: 0; }
+  .topbar__data .icone { display: none; }
+
+  .grade-graficos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grafico--largo { grid-column: span 2; }
+  .grade-operacao { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grade-operacao .cartao--atividades { grid-column: auto; grid-row: auto; }
+
+  .editor__grade { grid-template-columns: minmax(0, 1fr) 300px; }
+  .detalhe-negociacao__grade { grid-template-columns: 1fr; }
+  .detalhe-negociacao__conversa { border-right: 0; }
+  .painel-proposta { border-top: 1px solid var(--borda); grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 28px; }
+  .painel-proposta > header, .painel-proposta > .briefing__perfil { grid-column: 1 / -1; }
+  .painel-proposta > .ficha { grid-column: 2; grid-row: 2 / span 5; }
+  .indicadores { grid-template-columns: 1.3fr repeat(2, minmax(0, 1fr)); }
+  .indicador--principal { grid-row: span 3; }
+}
+
+/* ---------- Tablets: navegação em gaveta ---------- */
+@media (max-width: 960px) {
+  .app { grid-template-columns: minmax(0, 1fr); }
+  .sidebar { position: fixed; left: 0; top: 0; bottom: 0; width: min(290px, 86vw); transform: translateX(-102%); transition: transform 220ms ease; box-shadow: var(--sombra); }
+  body.menu-aberto .sidebar { transform: none; }
+  body.menu-aberto::after { content: ''; position: fixed; inset: 0; z-index: 55; background: rgba(15, 8, 14, 0.6); animation: surgir 160ms ease both; }
+  body.menu-aberto { overflow: hidden; }
+  .botao-icone.topbar__menu { display: inline-grid; margin-left: -8px; }
+
+  .painel-topo { grid-template-columns: 1fr; }
+  .inicio { grid-template-columns: 1fr; padding: 24px; }
+  .inicio__texto h2 { max-width: none; }
+
+  .editor__grade { grid-template-columns: 1fr; }
+  .resumo { position: static; }
+
+  /* Negociações: uma coluna por vez (lista ou conversa). */
+  .negociacoes { grid-template-columns: 1fr; }
+  .negociacoes__lista { position: static; max-height: none; }
+  .negociacoes--detalhe .negociacoes__lista { display: none; }
+  .negociacoes:not(.negociacoes--detalhe) .negociacoes__detalhe { display: none; }
+  .detalhe-negociacao__voltar { display: inline-grid; margin-left: -8px; }
+  .baloes { max-height: none; }
+
+  .faixa { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .faixa__item:nth-child(2) { border-right: 0; }
+  .faixa__item:nth-child(-n + 2) { border-bottom: 1px solid var(--borda); }
+  .ajuste { grid-template-columns: 1fr; }
+  .ajuste__previa { position: static; order: -1; }
+}
+
+/* ---------- Smartphones ---------- */
+@media (max-width: 680px) {
+  :root { --altura-topo: 60px; }
+  body { font-size: 14px; }
+  .conteudo { padding: 18px 16px 48px; gap: 18px; }
+  .topbar { padding: 8px 14px; gap: 8px; }
+  .topbar__titulo h1 { font-size: 17px; }
+  .topbar__titulo p { display: none; }
+  .topbar__acoes { gap: 2px; }
+  .topbar__demo span { display: none; }
+  .topbar__demo { padding: 5px 6px; margin: 0; }
+  .perfil { border: 0; padding: 2px; }
+  .perfil__nome, .perfil > .icone { display: none; }
+  .popover { position: fixed; left: 12px; right: 12px; top: calc(var(--altura-topo) + 4px); width: auto; max-width: none; }
+
+  .pagina__cabecalho { align-items: stretch; flex-direction: column; }
+  .pagina__cabecalho h2 { font-size: 20px; }
+  .pagina__acoes .botao { flex: 1; }
+  .cartao { padding: 18px 16px; }
+  .cartao--tabela { padding: 0; }
+  .cartao:not(.cartao--tabela) > .tabela-envoltorio { margin: 0 -16px; }
+  .barra-filtros { padding: 12px 14px; }
+  .busca { max-width: none; flex-basis: 100%; }
+  .barra-filtros__grupo .entrada--p { flex: 1; min-width: 0; }
+  .chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-inline: -2px; padding: 2px; max-width: 100%; }
+  .chips::-webkit-scrollbar { display: none; }
+  .chip { flex: none; }
+
+  .grade-form { grid-template-columns: 1fr; }
+  .marcadores { grid-template-columns: 1fr; }
+  .escolhas { grid-template-columns: 1fr; }
+  .boas-vindas { padding: 20px 18px; place-items: start center; }
+  .boas-vindas .botao--g { justify-self: stretch; }
+  .form-rodape .botao { flex: 1; }
+
+  /* Tabelas viram fichas empilhadas, com o rótulo de cada coluna ao lado do valor. */
+  .tabela--empilhavel thead { display: none; }
+  .tabela--empilhavel, .tabela--empilhavel tbody, .tabela--empilhavel tfoot { display: block; }
+  .tabela--empilhavel tr { display: grid; gap: 7px; padding: 14px 16px; border-bottom: 1px solid var(--borda); }
+  .tabela--empilhavel tbody tr:last-child { border-bottom: 0; }
+  .tabela--empilhavel td, .tabela--empilhavel th { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 0 !important; border: 0; text-align: right; background: none; }
+  .tabela--empilhavel td:first-child { display: block; text-align: left; }
+  .tabela--empilhavel td[data-rotulo]::before { content: attr(data-rotulo); flex: none; color: var(--texto-suave); font-size: 12px; font-weight: 400; text-align: left; }
+  .tabela--empilhavel td[data-rotulo] small { margin: 0; }
+  .tabela--empilhavel td[data-rotulo] > strong + small, .tabela--empilhavel td[data-rotulo] > .selo + small { display: none; }
+  .tabela--empilhavel td.acoes { justify-content: flex-start; flex-wrap: wrap; width: auto; gap: 4px; padding-top: 6px !important; white-space: normal; }
+  .tabela--empilhavel td:empty { display: none; }
+  .tabela--empilhavel tfoot tr { display: flex; justify-content: space-between; background: var(--superficie-2); border-top: 1px solid var(--borda); border-bottom: 0; }
+  .celula-titulo { min-width: 0; }
+
+  .modal-raiz { padding: 0; place-items: end stretch; }
+  .modal { max-width: none !important; max-height: 94vh; border-radius: var(--raio-g) var(--raio-g) 0 0; border-bottom: 0; }
+  .modal__cabecalho { padding: 16px 16px 14px; }
+  .modal__corpo { padding: 16px; }
+  .modal__rodape { padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); border-radius: 0; }
+  .modal__rodape .botao { flex: 1 1 auto; }
+  .toasts { right: 12px; left: 12px; bottom: 12px; width: auto; }
+
+  .caixa { padding: 20px 18px; }
+  .caixa__duplo { grid-template-columns: 1fr; }
+  .caixa__item + .caixa__item { padding-left: 0; border-left: 0; border-top: 1px solid var(--borda); margin-top: 16px; }
+  .metrica { padding: 14px 16px; }
+  .metrica__valor { font-size: 24px; }
+  .metrica__icone { right: 14px; top: 14px; }
+  .grade-graficos, .grade-operacao { grid-template-columns: 1fr; }
+  .grafico--largo { grid-column: auto; }
+  .grafico__area { height: 200px; }
+  .passo-inicial { flex-wrap: wrap; }
+  .passo-inicial .botao { margin-left: 48px; }
+
+  .contatos { grid-template-columns: 1fr; }
+
+  .passo__rotulo { display: none; }
+  .passo--atual .passo__rotulo { display: inline; }
+  .passo { flex: 0 0 auto; }
+  .passo--atual { flex: 1 1 auto; }
+  .passo button { padding-right: 8px; }
+  .editor__etapa { padding: 20px 16px; }
+  .editor__etapa h2 { font-size: 18px; }
+  .editor__rodape .botao { flex: 1 1 auto; }
+  .editor__espaco { display: none; }
+  .opcoes--grade, .opcoes--tres { grid-template-columns: 1fr; }
+  .opcao { align-items: flex-start; }
+  .avulsos__novo { grid-template-columns: 1fr; }
+  .documento { padding: 18px 16px; }
+  .documento__id { justify-items: start; text-align: left; }
+
+  .detalhe-negociacao__topo { padding: 14px 16px; gap: 10px; }
+  .detalhe-negociacao__topo .avatar { display: none; }
+  .baloes { padding: 16px; }
+  .balao { max-width: 94%; }
+  .acoes-negociacao { padding: 14px 16px 16px; }
+  .acoes-negociacao__botoes .botao { flex: 1 1 calc(50% - 8px); }
+  .painel-proposta { grid-template-columns: 1fr; padding: 16px; }
+  .painel-proposta > .ficha { grid-column: auto; grid-row: auto; }
+
+  .projeto { padding: 16px; }
+  .projeto__numeros { justify-items: start; }
+  .trilha { grid-template-columns: repeat(6, auto); justify-content: space-between; }
+  .trilha__etapa:not(.trilha__etapa--atual) .trilha__rotulo { display: none; }
+  .projeto__rodape .entrada--p { flex: 1; }
+  .projeto__rodape .botao--primario { flex: 1 1 100%; order: -1; }
+  .projeto__espaco { display: none; }
+
+  .indicadores { grid-template-columns: 1fr 1fr; }
+  .indicador--principal { grid-column: 1 / -1; grid-row: auto; }
+  .indicador { padding: 14px 16px; }
+  .indicador__valor { font-size: 18px; }
+  .periodo { align-items: stretch; }
+
+  .previa-logo { align-items: flex-start; }
+  .temas { grid-template-columns: 1fr 1fr; }
+  .acao-dado .botao { flex: 1; }
+}
+
+@media (max-width: 380px) {
+  .metricas { grid-template-columns: 1fr; }
+  .faixa { grid-template-columns: 1fr; }
+  .faixa__item { border-right: 0; border-bottom: 1px solid var(--borda); }
+  .acoes-negociacao__botoes .botao { flex-basis: 100%; }
+}
+
+/* Tabela de clientes: em larguras intermediárias, colunas secundárias saem
+   (continuam disponíveis nos detalhes do cliente) para evitar rolagem lateral. */
+@media (min-width: 681px) and (max-width: 1240px) {
+  #lista-clientes th:nth-child(2), #lista-clientes td:nth-child(2) { display: none; }
+}
+@media (min-width: 681px) and (max-width: 960px) {
+  #lista-clientes th:nth-child(3), #lista-clientes td:nth-child(3) { display: none; }
+}
